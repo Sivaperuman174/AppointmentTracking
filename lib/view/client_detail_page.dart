@@ -1,4 +1,4 @@
-import 'package:appointmenttrackerapp/main.dart';
+import 'package:appointmenttrackerapp/model/client.dart';
 import 'package:appointmenttrackerapp/view/client_add_page.dart';
 import 'package:appointmenttrackerapp/view/client_edit_page.dart';
 import 'package:flutter/material.dart';
@@ -8,45 +8,27 @@ class ClientDetailPage extends StatelessWidget {
 
   final List<Client> clients = [
     Client(
-      name: 'Prashant',
-      appointments: [
-        Appointment(
-          appointmentName: 'Meeting',
-          appointmentDate: DateTime(2024, 3, 20),
-          appointmentCreatedDate: DateTime(2024, 3, 18),
-        ),
-        Appointment(
-          appointmentName: 'Presentation',
-          appointmentDate: DateTime(2024, 3, 25),
-          appointmentCreatedDate: DateTime(2024, 3, 18),
-        ),
-      ],
-    ),
+        id: 1,
+        name: 'Pressform',
+        companyId: 1,
+        address: 'main street',
+        primaryContactName: 'mari',
+        primaryContactNo: '123',
+        secondaryContactName: 'siva',
+        secondaryContactNo: '879',
+        location: '123.00, 32.45',
+        deleted: 0),
     Client(
-      name: 'Sivaparman',
-      appointments: [
-        Appointment(
-          appointmentName: 'Meeting',
-          appointmentDate: DateTime(2024, 3, 20),
-          appointmentCreatedDate: DateTime(2024, 3, 18),
-        ),
-        Appointment(
-          appointmentName: 'Presentation',
-          appointmentDate: DateTime(2024, 3, 25),
-          appointmentCreatedDate: DateTime(2024, 3, 18),
-        ),
-        Appointment(
-          appointmentName: 'Meeting',
-          appointmentDate: DateTime(2024, 3, 20),
-          appointmentCreatedDate: DateTime(2024, 3, 18),
-        ),
-        Appointment(
-          appointmentName: 'Presentation',
-          appointmentDate: DateTime(2024, 3, 25),
-          appointmentCreatedDate: DateTime(2024, 3, 18),
-        ),
-      ],
-    ),
+        id: 2,
+        name: 'Client CNC',
+        companyId: 1,
+        address: 'south street',
+        primaryContactName: 'muthu',
+        primaryContactNo: '432',
+        secondaryContactName: 'guru',
+        secondaryContactNo: '145',
+        location: '156.00, 38.45',
+        deleted: 0)
     // Add more clients as needed
   ];
 
@@ -62,44 +44,37 @@ class ClientDetailPage extends StatelessWidget {
           return Column(
             children: [
               Center(
-                child: Column(
-                  children: clients[index]
-                      .appointments
-                      .map((appointment) => Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 16.0),
-                            child: Card(
-                              child: ListTile(
-                                title: Text(appointment.appointmentName),
-                                subtitle: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text(
-                                        'Date: ${appointment.appointmentDate}'),
-                                    Text(
-                                        'Created Date: ${appointment.appointmentCreatedDate}'),
-                                  ],
-                                ),
-                                trailing: IconButton(
-                                  icon: const Icon(Icons.edit),
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => ClientEditPage(
-                                          initialName: 'siva',
-                                          initialEmail: 'siva@gmail.com',
-                                          initialPosition: 'senior',
-                                          //appointment: appointment
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Card(
+                    child: ListTile(
+                      title: Text(clients[index].name),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text('Address: ${clients[index].address}'),
+                          Text(
+                              'Primary Contact: ${clients[index].primaryContactName}'),
+                        ],
+                      ),
+                      trailing: IconButton(
+                        icon: const Icon(Icons.edit),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ClientEditPage(
+                                initialName: 'siva',
+                                initialEmail: 'siva@gmail.com',
+                                initialPosition: 'senior',
+                                //appointment: appointment
                               ),
                             ),
-                          ))
-                      .toList(),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ],
