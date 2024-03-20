@@ -3,9 +3,14 @@ import 'package:appointmenttrackerapp/view/client_add_page.dart';
 import 'package:appointmenttrackerapp/view/client_edit_page.dart';
 import 'package:flutter/material.dart';
 
-class ClientDetailPage extends StatelessWidget {
-  ClientDetailPage({Key? key}) : super(key: key);
+class ClientDetailPage extends StatefulWidget {
+  const ClientDetailPage({Key? key}) : super(key: key);
 
+  @override
+  State<ClientDetailPage> createState() => _ClientDetailPageState();
+}
+
+class _ClientDetailPageState extends State<ClientDetailPage> {
   final List<Client> clients = [
     Client(
         id: 1,
@@ -32,11 +37,21 @@ class ClientDetailPage extends StatelessWidget {
     // Add more clients as needed
   ];
 
+  void addClientDetail(Client newClient) {
+    setState(() {
+      clients.add(newClient);
+    });
+  }
+
+  void updateClientDetail() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Client Appointments'),
+        title: const Text('Client Details'),
       ),
       body: ListView.builder(
         itemCount: clients.length,
@@ -55,6 +70,12 @@ class ClientDetailPage extends StatelessWidget {
                           Text('Address: ${clients[index].address}'),
                           Text(
                               'Primary Contact: ${clients[index].primaryContactName}'),
+                          Text(
+                              'Primary Contact No: ${clients[index].primaryContactNo}'),
+                          Text(
+                              'Secondary Contact: ${clients[index].secondaryContactName}'),
+                          Text(
+                              'Secondary Contact No: ${clients[index].secondaryContactNo}'),
                         ],
                       ),
                       trailing: IconButton(
@@ -64,11 +85,8 @@ class ClientDetailPage extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               builder: (context) => ClientEditPage(
-                                initialName: 'siva',
-                                initialEmail: 'siva@gmail.com',
-                                initialPosition: 'senior',
-                                //appointment: appointment
-                              ),
+                                  clientDetail: clients[index],
+                                  updateClientHandler: updateClientDetail),
                             ),
                           );
                         },
@@ -85,7 +103,11 @@ class ClientDetailPage extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const ClientAddPage()),
+            MaterialPageRoute(
+                builder: (context) => ClientAddPage(
+                      addClientHandler: addClientDetail,
+                      totalClientCount: clients.length,
+                    )),
           );
         },
         tooltip: 'Create new client',
