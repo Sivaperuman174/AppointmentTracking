@@ -1,5 +1,6 @@
 import 'package:appointmenttrackerapp/model/appointment.dart';
 import 'package:appointmenttrackerapp/model/client.dart';
+import 'package:appointmenttrackerapp/view/appointment_edit_page.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -94,6 +95,11 @@ class _AppointmentDetailPageState extends State<AppointmentDetailPage> {
         status: 'Created',
         deleted: 0),
   ];
+
+  void updateAppointmentDetail() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -158,22 +164,31 @@ class _AppointmentDetailPageState extends State<AppointmentDetailPage> {
                                           'Actual Date: ${DateFormat('dd-MM-yyyy').format(_selectedClient!.appointments![index].actualDate)}'),
                                       Text(
                                           'Alternate Date: ${DateFormat('dd-MM-yyyy').format(_selectedClient!.appointments![index].alternateDate)}'),
+                                      Text(
+                                          'Booked on: ${DateFormat('dd-MM-yyyy').format(_selectedClient!.appointments![index].bookedOn)}'),
+                                      Text(
+                                          'Created By: ${_selectedClient!.appointments![index].createdBy}'),
+                                      Text(
+                                          'Status: ${_selectedClient!.appointments![index].status}'),
+                                      Text(
+                                          'Acceptance Status: ${_selectedClient!.appointments![index].acceptanceStatus}'),
                                     ],
                                   ),
                                   trailing: IconButton(
-                                    icon: Icon(Icons.edit),
+                                    icon: const Icon(Icons.edit),
                                     onPressed: () {
-                                      // Navigator.push(
-                                      //   context,
-                                      //   MaterialPageRoute(
-                                      //     builder: (context) => ClientEditPage(
-                                      //       initialName: 'siva',
-                                      //       initialEmail: 'siva@gmail.com',
-                                      //       initialPosition: 'senior',
-                                      //       //appointment: appointment
-                                      //     ),
-                                      //   ),
-                                      // );
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              AppointmentEditPage(
+                                            appointmentDetail: _selectedClient!
+                                                .appointments![index],
+                                            updateAppointmentHandler:
+                                                updateAppointmentDetail,
+                                          ),
+                                        ),
+                                      );
                                     },
                                   ),
                                 ),

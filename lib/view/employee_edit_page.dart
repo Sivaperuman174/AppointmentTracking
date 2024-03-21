@@ -77,15 +77,6 @@ class _EmployeeEditPageState extends State<EmployeeEditPage> {
   // Function to save employee details
   void _saveEmployeeDetails() {
     // Implement saving logic here
-    // For simplicity, let's just print the details for now
-    // print('Name: ${_nameController.text}');
-    // print('Address: ${_addressController.text}');
-    // print('Primary contact: ${_primaryContactController.text}');
-    // print('Primary contact NO: ${_primaryContactNoController.text}');
-    // print('Position: ${_secondaryContactController.text}');
-    // print('Position: ${_secondaryContactNoController.text}');
-    // print('Position: ${_locationController.text}');
-
     widget.employeeDetail.name = _nameController.text;
     widget.employeeDetail.address = _addressController.text;
     widget.employeeDetail.qualification = _qualificationController.text;
