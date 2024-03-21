@@ -1,6 +1,7 @@
 import 'package:appointmenttrackerapp/model/appointment.dart';
 import 'package:appointmenttrackerapp/model/client.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class AppointmentDetailPage extends StatefulWidget {
   const AppointmentDetailPage({Key? key}) : super(key: key);
@@ -154,9 +155,9 @@ class _AppointmentDetailPageState extends State<AppointmentDetailPage> {
                                       Text(
                                           'Alternate Allocate To: ${_selectedClient!.appointments![index].alternateAllocateTo}'),
                                       Text(
-                                          'Actual Date: ${_selectedClient!.appointments![index].actualDate}'),
+                                          'Actual Date: ${DateFormat('dd-MM-yyyy').format(_selectedClient!.appointments![index].actualDate)}'),
                                       Text(
-                                          'Alternate Date: ${_selectedClient!.appointments![index].alternateDate}'),
+                                          'Alternate Date: ${DateFormat('dd-MM-yyyy').format(_selectedClient!.appointments![index].alternateDate)}'),
                                     ],
                                   ),
                                   trailing: IconButton(

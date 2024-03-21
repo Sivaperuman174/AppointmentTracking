@@ -3,7 +3,8 @@ class Employee {
   late int companyId;
   late String name;
   late String qualification;
-  late String dateOfBirth;
+  late DateTime dateOfBirth;
+  late String emailId;
   late int roleId;
   late String address;
   late String contactNo;
@@ -17,6 +18,7 @@ class Employee {
       required this.name,
       required this.qualification,
       required this.dateOfBirth,
+      required this.emailId,
       required this.roleId,
       required this.address,
       required this.contactNo,
@@ -30,6 +32,7 @@ class Employee {
     name = json['name'];
     qualification = json['qualification'];
     dateOfBirth = json['dateOfBirth'];
+    address = json['emailId'];
     roleId = json['roleId'];
     address = json['address'];
     contactNo = json['contactNo'];
@@ -45,6 +48,7 @@ class Employee {
     data['name'] = name;
     data['qualification'] = qualification;
     data['dateOfBirth'] = dateOfBirth;
+    data['emailId'] = emailId;
     data['roleId'] = roleId;
     data['address'] = address;
     data['contactNo'] = contactNo;
